@@ -1,10 +1,13 @@
-const express = require('express')
+import React from 'react'
+import App from './App'
+import ReactDom from 'react-dom/server'
 
-const app = express()
+export default (req, res) => {
+    // 把组件渲染成字符串
+    const HomeString = ReactDom.renderToString(<App />)
+    console.log(HomeString);
 
-// 任何一个get请求，都响应HTML
-app.get('/', (req, res) => {
-    html = `
+    let html = `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -14,15 +17,10 @@ app.get('/', (req, res) => {
         </head>
         <body>
             <div id="root">
-                hello world12
+                ${HomeString}
             </div>
         </body>
     </html>
     `
     res.send(html)
-})
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000')
-})
-
+}
