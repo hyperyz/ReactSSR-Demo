@@ -1,13 +1,7 @@
-const { watch } = require('fs')
 const path = require('path')
-const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
     mode: 'development',
-    entry: './src/server',
-    output: {
-        filename: "server.js"
-    },
     watch: true,
     target: 'node',
     resolve: {
@@ -16,7 +10,6 @@ module.exports = {
         },
         extensions: ['.js', '.jsx', ".css"]
     },
-    externals: [nodeExternals()], // 不需要打包node_modules中的依赖
     module: {
         rules: [
             {
